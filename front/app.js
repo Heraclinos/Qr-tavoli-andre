@@ -887,7 +887,7 @@ class AppController {
         if (!this.currentTableQR) return;
 
         try {
-            const tableId = AppState.currentTableData.id;
+            const tableId = this.currentTableQR.replace('TABLE_', '');
             const response = await APIClient.getTableTransactions(tableId, 5);
 
             if (response.success && response.data.transactions) {
