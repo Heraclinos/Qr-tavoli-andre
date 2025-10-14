@@ -156,7 +156,10 @@ exports.getTableHistory = async (req, res, next) => {
     const limit = parseInt(req.query.limit, 10) || 10;
 
     // Verifica che il tavolo esista
-    const table = await Table.findById(tableId);
+    const table =
+    (mongoose.Types.ObjectId.isValid(tableId)
+    ? await Table.findById(tableId)
+    : await Table.findOne({ tableNumber: Number(tableId) }));
 
     if (!table) {
       return res.status(404).json({
