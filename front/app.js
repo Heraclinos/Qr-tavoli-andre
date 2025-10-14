@@ -8,7 +8,7 @@
 const API_CONFIG = {
     BASE_URL: window.location.hostname === 'localhost' 
         ? 'http://localhost:3000/api'
-        : 'https://qr-tavoli-backend.onrender.com/api',
+        : 'https://qr-tavoli-system.onrender.com/api',
     TIMEOUT: 10000,
     HEADERS: {
         'Content-Type': 'application/json',
