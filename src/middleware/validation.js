@@ -134,8 +134,8 @@ exports.validateAddPoints = [
     .toUpperCase(),
 
   body('points')
-    .isInt({ min: config.MIN_POINTS_PER_TRANSACTION, max: config.MAX_POINTS_PER_TRANSACTION })
-    .withMessage(`Punti devono essere tra ${config.MIN_POINTS_PER_TRANSACTION} e ${config.MAX_POINTS_PER_TRANSACTION}`),
+    .isInt({ min: -config.MAX_POINTS_PER_TRANSACTION, max: config.MAX_POINTS_PER_TRANSACTION })
+    .withMessage(`Punti devono essere tra - ${config.MAX_POINTS_PER_TRANSACTION} e ${config.MAX_POINTS_PER_TRANSACTION}`),
 
   body('description')
     .optional()
