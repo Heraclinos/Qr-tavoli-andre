@@ -29,13 +29,22 @@ exports.addPoints = async (req, res, next) => {
     const pointsToAdd = parseInt(points);
 
     // Validazioni aggiuntive
-    if (pointsToAdd < config.MIN_POINTS_PER_TRANSACTION || 
+    if (pointsToAdd < -config.MAX_POINTS_PER_TRANSACTION || 
         pointsToAdd > config.MAX_POINTS_PER_TRANSACTION) {
       return res.status(400).json({
         success: false,
-        message: `Punti devono essere tra ${config.MIN_POINTS_PER_TRANSACTION} e ${config.MAX_POINTS_PER_TRANSACTION}`
+        message: `Punti devono essere tra - ${config.MAx_POINTS_PER_TRANSACTION} e ${config.MAX_POINTS_PER_TRANSACTION}`
       });
     }
+    // Proibito far andare sotto zero
+      if (pointsToAdd < 0 && table.points + pointsToAdd < 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Impossibile sottrarre più punti di quelli disponibili: il punteggio non può essere negativo.'
+      });
+    }
+
+   
 
     // Salva punti precedenti per la transazione
     const previousPoints = table.points;
