@@ -3,7 +3,7 @@
  * Compatibile con backend Node.js/MongoDB
  * Deploy Ready per Render
  */
-
+f
 // Configurazione API
 const API_CONFIG = {
     BASE_URL: window.location.hostname === 'localhost' 
@@ -887,7 +887,7 @@ class AppController {
         if (!this.currentTableQR) return;
 
         try {
-            const tableId = this.currentTableQR.replace('TABLE_', '');
+            const tableId = AppState.currentTableData.id;
             const response = await APIClient.getTableTransactions(tableId, 5);
 
             if (response.success && response.data.transactions) {
