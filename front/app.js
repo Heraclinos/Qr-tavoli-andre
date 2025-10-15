@@ -3,7 +3,6 @@
  * Compatibile con backend Node.js/MongoDB
  * Deploy Ready per Render
  */
-f
 // Configurazione API
 const API_CONFIG = {
     BASE_URL: window.location.hostname === 'localhost' 
