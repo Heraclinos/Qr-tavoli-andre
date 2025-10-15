@@ -846,7 +846,7 @@ class AppController {
             const response = await APIClient.addPoints(
                 this.currentTableQR, 
                 validation.value, 
-                ` 'Aggiunta punti da cassiere`'
+                ` "Aggiunta punti da cassiere"
             );
 
             if (response.success) {
