@@ -581,8 +581,7 @@ class AppController {
         document.querySelectorAll('.points-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const points = parseInt(e.currentTarget.dataset.points);
-                const isRemove = e.currentTarget.classList.contains('points-btn-remove');
-                this.handlePointsChange(isRemove ? -points : points);
+                this.handlePointsChange(points);
             });
         });
 
@@ -592,15 +591,6 @@ class AppController {
             const points = parseInt(input.value);
             if (points) {
                 this.handlePointsChange(points);
-                input.value = '';
-            }
-        });
-
-        document.getElementById('removeCustomPoints')?.addEventListener('click', () => {
-            const input = document.getElementById('customRemovePoints');
-            const points = parseInt(input.value);
-            if (points) {
-                this.handlePointsChange(-points);
                 input.value = '';
             }
         });
