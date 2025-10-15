@@ -398,9 +398,6 @@ class UIComponents {
                     </div>
                     <div class="leaderboard-info">
                         <div class="table-name">${Utils.sanitizeInput(table.name)}</div>
-                        <div class="table-details">
-                            ${table.qrCode} ${isCurrentTable ? '• Tavolo Corrente' : ''}
-                        </div>
                     </div>
                     <div class="leaderboard-points">
                         <span>⭐</span>
