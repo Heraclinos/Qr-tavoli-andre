@@ -92,12 +92,12 @@ class Utils {
             return { valid: false, error: 'I punti devono essere un numero' };
         }
 
-        if (Math.abs(num) > APP_CONFIG.MAX_POINTS_TRANSACTION) {
+        if (num > APP_CONFIG.MAX_POINTS_TRANSACTION) {
             return { valid: false, error: `Massimo ${APP_CONFIG.MAX_POINTS_TRANSACTION} punti per transazione` };
         }
 
-        if (num === 0) {
-            return { valid: false, error: 'I punti non possono essere zero' };
+        if (num <= 0) {
+            return { valid: false, error: 'I punti non possono essere minori di zero' };
         }
 
         return { valid: true, value: num };
@@ -847,7 +847,7 @@ class AppController {
             const response = await APIClient.addPoints(
                 this.currentTableQR, 
                 validation.value, 
-                `${validation.value > 0 ? 'Aggiunta' : 'Rimozione'} punti da cassiere`
+                ` 'Aggiunta punti da cassiere`'
             );
 
             if (response.success) {
@@ -855,9 +855,7 @@ class AppController {
                 const newPoints = response.data.table.points;
                 AppState.currentTableData.points = newPoints;
                 this.updateCashierDashboardUI(AppState.currentTableData);
-
-                const action = validation.value > 0 ? 'aggiunti' : 'rimossi';
-                ToastManager.success(`${Math.abs(validation.value)} punti ${action} con successo!`);
+                ToastManager.success(`${Math.abs(validation.value)} punti aggiunti con successo!`);
 
                 // Ricarica transazioni recenti
                 this.loadRecentTransactions();
